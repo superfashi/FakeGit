@@ -4,7 +4,7 @@ import re
 from fakegit.error import ArgumentError
 from fakegit.github import GithubUser
 from fakegit.gitconf import GitConf
-
+from fakegit.docs import HELP_DOCS
 def makeC(argx):
     ret = [repr(arg) if arg.count(' ') else arg for arg in argx]
     return ret
@@ -32,8 +32,7 @@ def procUser(argx):
     return ' '.join(makeC(argx)), name, email, 'change' in argx
 
 def showHelp(argx = []):
-    print('''this is a help
-text which ks nonsence''')
+    print(HELP_DOCS)
     exit(0)
 
 def procArgs():

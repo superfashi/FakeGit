@@ -2,6 +2,12 @@ import requests
 
 from fakegit.error import UserError
 
+def Expectation(resp):
+    ret = resp.json()
+    if resp.status_code != 200:
+        raise UserError(ret['message'])
+    return ret
+
 class GithubUser():
     def __init__(self, name):
         self.findUser(name)
@@ -12,24 +18,20 @@ class GithubUser():
         return self.name, self.email
 
     def findUser(self, username):
-        userInfo = requests.get('https://api.github.com/users/' + username)
-        if userInfo.status_code == 404:
-            raise UserError('No such user found.')
-        elif userInfo.status_code == 403:
-            raise UserError('You have reached Github API\'s rate limit, please wait for an hour.')
-        self.name = userInfo.json()['name'] or userInfo.json()['login']
-        self.getEmail(userInfo.json()['repos_url'])
+        userInfo = Expectation(requests.get('https://api.github.com/users/' + username))
+        self.name = userInfo['name'] or userInfo['login']
+        self.getEmail(userInfo['repos_url'])
 
     def getEmail(self, url):
-        reposInfo = requests.get(url).json()
+        reposInfo = Expectation(requests.get(url))
         reposInfo.sort(key = lambda repo: repo['id'], reverse = True)
         for repo in reposInfo:
             if self.getEmailFromRepo(repo['commits_url'][:-6]):
                 break
 
     def getEmailFromRepo(self, url):
-        commitsInfo = requests.get(url)
-        for commit in commitsInfo.json():
+        commitsInfo = Expectation(requests.get(url))
+        for commit in commitsInfo:
             current = commit['commit']
             if current['author']['name'] == self.name:
                 self.email = current['author']['email']

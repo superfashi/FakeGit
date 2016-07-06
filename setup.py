@@ -17,7 +17,7 @@ setup(
     url = 'https://github.com/hanbang-wang/FakeGit',
     download_url = 'https://github.com/hanbang-wang/FakeGit/tarball/master',
     keywords = ['git', 'fakegit'],
-    classifiers = ['Development Status :: 5 - Production/Stable'],
+    classifiers = ['Development Status :: 5 - Production/Stable', 'License :: Freely Distributable'],
     entry_points = {'console_scripts': ['fakegit = fakegit.main:main']},
     install_requires = ['requests'],
     license = 'Unlicense',
