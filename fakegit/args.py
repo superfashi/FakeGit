@@ -5,6 +5,7 @@ from fakegit.error import ArgumentError
 from fakegit.github import GithubUser
 from fakegit.gitconf import GitConf
 from fakegit.docs import HELP_DOCS
+
 def makeC(argx):
     ret = [repr(arg) if arg.count(' ') else arg for arg in argx]
     return ret
@@ -18,7 +19,7 @@ def procUser(argx):
         if ind >= len(argx):
             raise ArgumentError('Command excuted with inappropriate argument.')
         info = argx.pop(ind)
-        name, email = re.findall(r'([\w -]+)(<.*@.*>|<>)?', info)[0] # such dirty regex
+        name, email = re.findall(r'([\w -]+)(<.*@.*>|<>)?', info)[0]  # such dirty regex
         name = name.strip()
         if name == '':
             raise ArgumentError('Username needed.')
