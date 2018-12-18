@@ -1,9 +1,13 @@
+For more efficent Golang version, please check it here: `https://github.com/hanbang-wang/FakeGit-Go <https://github.com/hanbang-wang/FakeGit-Go>`_
+
+-----
+
 =======
 FakeGit
 =======
 |pypi|
 
-FakeGit is a great tool to fool yourself and others, it will modify your local git config file, deceive git to recognize the committer as somebody else.
+FakeGit is a great tool to fool yourself and others. It will modify your local git config file, deceive git to recognize the committer as somebody else.
 
 You can use it on your own project or any repository, if you have push privilege.
 
@@ -13,9 +17,7 @@ Example
     :alt: FakeGit Demo
     :align: center
 
-For example, the father of jQuery and the father of PHP is committing with a funny slogan, with my great respect and no offence for sure.
-
-Those are real commits and will be recognized by Github and almost any git hosting websites as a user of one, if such user exists.
+Those are real commits and will be recognized by Github and almost any git hosting websites as a user of one, if such a user exists.
 
 Installation
 ============
@@ -37,7 +39,7 @@ Usage
 
     fakegit <command> [--user] [--help|-h]
 
-FakeGit passes all your arguments into original Git cli, except for the following:
+FakeGit passes all your arguments into the original Git cli, except for the following:
 
 .. code-block:: bash
 
@@ -45,7 +47,7 @@ FakeGit passes all your arguments into original Git cli, except for the followin
     recover      Quickly delete 'user' params in your local git config file
     --help, -h   A brief guide
 
-FakeGit intercepts ``--user`` with exact one arg following, which is the committer's identity.
+FakeGit intercepts ``--user`` with exact one arg following, which should be the committer's identity.
 
 Identity Format
 ---------------
@@ -72,7 +74,7 @@ Examples
 
 .. code-block:: bash
 
-    fakegit commit -a -m "A example." --user hanbang-wang"
+    fakegit commit -a -m "An example." --user hanbang-wang
 
 It will use Github API with the id `hanbang_wang`, which is me, lookup my commits history and my commit email, generating a format like `SuperFashi <admin@superfashi.com>` , use it to make commit messages.
 
@@ -80,7 +82,7 @@ But I recommend to specify a user info:
 
 .. code-block:: bash
 
-    fakegit commit -a -m "A example." --user "SuperFashi <admin@superfashi.com>"
+    fakegit commit -a -m "An example." --user "SuperFashi <admin@superfashi.com>"
 
 of course you can use any git command by FakeGit:
 
@@ -94,7 +96,7 @@ But it would not make any difference, since only the ``commit`` command will use
 Additions
 ---------
 
-``fakegit change`` will change your local identity for ever, therefore it must followed by ``--user``, or it will throw an error.
+``fakegit change`` will change your local identity forever, therefore it must followed by ``--user``, or it will throw an error.
 
 ``fakegit recover`` is a quick tool for you to delete `user` params in your local git config file, in case of tired being someone else, or need a reset after a force quit.
 
