@@ -13,7 +13,7 @@ You can use it on your own project or any repository, if you have push privilege
 
 Example
 =======
-.. image:: https://superfashi.b0.upaiyun.com/wp-content/uploads/2016/07/fakegitdemo.png
+.. image:: https://www.superfashi.com/wp-content/uploads/2016/07/fakegitdemo.png
     :alt: FakeGit Demo
     :align: center
 
